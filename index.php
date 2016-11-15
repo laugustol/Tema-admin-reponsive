@@ -6,9 +6,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<!--JQUERY-->
 	<script src='jquery/jquery.min.js'></script>
+	<!--JQUERY-UI-->
 	<script src='jquery/jquery-ui.min.js'></script>
+	<!--BOOTSTRAP JS-->
 	<script src='bootstrap/js/bootstrap.min.js'></script>
+	<!--INTROJS JS-->
+    <script src='introjs/intro.min.js'></script>	
+    <!--INTROJS CSS-->
+    <link rel="stylesheet" href="introjs/introjs.min.css">	
+    <!--INTROJS-RTL CSS-->
+    <link rel="stylesheet" href="introjs/introjs-rtl.min.css">
 	<style>
 		body{
 		    text-transform: uppercase;
@@ -54,6 +63,7 @@
 			border:none;
 			background-color: #F8F8F8;
 			margin:0;
+
 		}
 
 		.buttoms{
@@ -61,10 +71,12 @@
 			padding-left: 2px; 
 			text-align: center;
 			z-index: 4;
+
 		}
 		.buttoms>div{
 			position:relative;
 			display: inline-block;
+			
 		}
 		.buttoms>div>ul{
 			position: fixed !important;
@@ -74,6 +86,9 @@
 			bottom: inherit;
 			z-index:5 !important;
 		}
+		.buttoms>.btn_edit_menu{
+			display:inline-block;
+		}
 		#div_menu{
 			position: relative;
 			border-top: 1px solid #e7e7e7;
@@ -81,10 +96,13 @@
 			padding:0;
 			margin:0;
 			z-index: 3;
+			margin-top: -30px;
 		}
 		.menu{
-		    /*margin: 0 !important;*/
+		    margin: 0 !important;
 		    padding: 0 !important;
+			/*padding-left: 5px !important;**/
+
 		    width: 270px !important;
 		    /*border:1px solid black;*/
 		} 
@@ -100,6 +118,7 @@
 		    width: 240px;
 		    color:#000000;
 		    text-decoration: none;
+		    padding-left: 5px !important;
 		}
 		.menu>li>ul{
 			position: relative;
@@ -122,8 +141,9 @@
 		    color:#000000;
 		    text-decoration: none;
 		}
-		.sub_menu_edit{
+		.btn_edit_submenu{
 			float:right;
+			display: block;
 		}
 		.wrapper{
 			padding-left: 270px;
@@ -131,6 +151,9 @@
 			z-index: 1;
 		}
 		@media(max-width: 768px){
+			.title{
+				position:absolute;
+			}
 			.sidebar{
 				position:relative;
 				border-right:none;
@@ -138,6 +161,9 @@
 				background-color:#F8F8F8;
 				overflow-x:hidden;
 				overflow-y: hidden;
+			}
+			#div_menu{
+				margin-top: 0px;
 			}
 			nav>.profile{
 				position: absolute;
@@ -159,9 +185,24 @@
 				margin-bottom: 0;
 				padding-bottom: 0;
 			}
-			.title{
-				position:absolute;
+			.buttoms{
+				position:absolute !important;
+				padding-top: 48px !important; 
+				padding-left: 2px !important; 
+				text-align: center;
+				z-index: 4!important;
 			}
+			.buttoms>div>ul{
+				position: fixed !important;
+				top:inherit;
+				left: inherit;
+				right: inherit;
+				bottom: inherit;
+				z-index:5 !important;
+			}
+			.buttoms>.btn_edit_menu{
+				display:none;
+			}		
 			.menu{
 			    margin: 0 !important;
 			    padding: 0 !important;
@@ -170,24 +211,24 @@
 			.menu>li{
 				list-style-type: none !important;
 				width: 100%;
-				border-bottom: 1px solid black;;
+				border-bottom: 1px solid #e7e7e7;
+			}
+			.menu>li>a{
+				padding-left: 5px !important;
 			}
 			.menu>li>ul{
 				list-style-type: none !important;
 				width: 100%;
+			}
+			.btn_edit_submenu{
+				display:none;
 			}
 			.wrapper{
 				padding-top: 10px;
 				padding-left: 0;
 				z-index: 1;
 			}
-			.buttoms{
-				position:absolute !important;
-				padding-top: 48px !important; 
-				padding-left: 2px !important; 
-				text-align: center;
-				z-index: 1000000!important;
-			}
+			
 		}
 	</style>
 </head>
@@ -197,7 +238,7 @@
 			<div class="title">
 				<a class="navbar-brand" href="" title="ACERCA DE...">SISTEMA</a>
 			</div>
-			<div class="profile">
+			<div class="profile" data-step="1" data-intro="PERFIL DEL USUARIO">
 				<img src="Kukenan_Tepuy_at_Sunset.jpg" alt="IMAGEN DE PERFIL" class="img">
 				<div class="data">
 					<b>USUARIO</b><br>
@@ -205,19 +246,23 @@
 					CADUCIDAD DE CLAVE EN: 365 DIAS
 				</div>
 			</div>
-			<div class="buttoms">
-				<a href="" class="btn btn-default btn-sm" title="IR AL INICIO"><i class="fa fa-home"></i></a>
-				<button type="button" id="btn_edit_menu" onclick="editar('ul_menu','btn_edit_menu');" class="btn btn-default btn-sm" title="HAGA CLICK PARA EDITAR EL ORDEN DEL MENU"><i class="glyphicon glyphicon-edit"></i></button>
-				<a href="" class="btn btn-default btn-sm" title="AYUDA EN LINEA"><i class="fa fa-comment"></i></a>
+			<div class="buttoms" data-step="2" data-intro="BOTONES DE ACCESO RAPIDO">
+				<a href="" class="btn btn-default btn-sm" title="IR AL INICIO" data-step="3" data-intro="BOTONE DE INICIO"><i class="fa fa-home"></i></a>
+				<a href="" class="btn btn-default btn-sm" title="MI PERFIL"  data-step="4" data-intro="BOTON DE ACCESO SU PERFIL DE USUARIO"><i class="glyphicon glyphicon-user"></i></a>
+				<button type="button" id="btn_edit_menu" onclick="edit_menu('ul_menu','btn_edit_menu');" class="btn btn-default btn-sm btn_edit_menu" title="HAGA CLICK PARA EDITAR EL ORDEN DEL MENU" data-step="5" data-intro="BOTON PARA EDITAR EL ORDEN DEL MENU"><i class="glyphicon glyphicon-edit"></i></button>
+				<!--<a href="" class="btn btn-default btn-sm" title="AYUDA EN LINEA"><i class="fa fa-comment"></i></a>-->
 				<div class="dropdow">
-					<a href="" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" title="MANUALES"><i class="fa fa-caret-down"></i><i class="fa fa-book"></i></a>
+					<a href="" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" title="INFORMACION DEL SISTEMA" data-step="6" data-intro="BOTON PARA OBTENER AYUDA, MANUALES E INFORMACION DEL SISTEMA"><i class="fa fa-book"> <i class="caret"></i></i></a>
 					<ul class="dropdown-menu">
+						<li><a onclick="introJs().setOptions({ 'skipLabel': 'Saltar', 'nextLabel': 'Siguiente', 'prevLabel': 'Anterior', 'doneLabel': 'Finalizar'}).start();" href="javascript:void(0);" href="javascript:void(0);"><i class="fa fa-comment"></i> AYUDA EN LINEA</a></li>
+						<li class="divider"></li>
 						<li><a href="">MANUAL DE USUARIO</a></li>
 						<li><a href="">MANUAL DE SISTEMA</a></li>
+						<li class="divider"></li>
+						<li><a href="">ACERCA DE...</a></li>
 					</ul>
 				</div>
-				<a href="" class="btn btn-default btn-sm" title="CERRAR SESION"><i class="fa fa-power-off"></i></a>
-
+				<a href="" class="btn btn-danger btn-sm" title="HAGA CLICK PARA CERRAR SU SESION"  data-step="7" data-intro="BOTON PARA CERRAR SU SESION"><i class="fa fa-power-off"></i></a>
 			</div>
 			<br><br>
 			<div class="container-fluid">
@@ -231,13 +276,13 @@
 					</button>
 				</div>
 				<div class="row">
-					<div class="collapse navbar-collapse" id="div_menu">
+					<div class="collapse navbar-collapse" id="div_menu"  data-step="8" data-intro="MENU ASIGNADO AL USUARIO">
 						<ul class="menu" id="ul_menu">
 							<li><a href="#">CONFIGURACION DE SISTEMA MUY LARGO</a></li>
 							<li>
-								<a href="javascript:;" data-toggle="collapse" data-target="#sub-menu" class="collapse">LIBROS<i  class="caret"></i></a>
+								<a href="javascript:;" data-toggle="collapse" data-target="#sub-menu" class="collapse"><i class="glyphicon glyphicon-user"></i> LIBROS<i  class="caret"></i></a>
 								<ul id="sub-menu" class="collapse">
-									<li><a href="#">CONFIGURACION DE SISTEMA MUY LARGO</a><button type="button" id="btn-edit-menu" onclick="editar('sub-menu','btn-edit-menu');" class="sub_menu_edit btn btn-default btn-xs" title="HAGA CLICK PARA EDITAR ESTE SUB-MENU"><i class="glyphicon glyphicon-edit"></i></button></li>
+									<li><a href="#">CONFIGURACION DE SISTEMA MUY LARGO</a><button type="button" id="btn-edit-menu" onclick="edit_menu('sub-menu','btn-edit-menu');" class="btn_edit_submenu btn btn-default btn-xs" title="HAGA CLICK PARA EDITAR ESTE SUB-MENU"><i class="glyphicon glyphicon-edit"></i></button></li>
 									<li><a href="#">CONFIGURACION DE SISTEMA</a></li>
 									<li><a href="#">SUB-MENU3</a></li>
 									<li><a href="#">SUB-MENU4</a></li>
@@ -247,7 +292,7 @@
 							<li><a href="#">AUTORES</a></li>
 							<li><a href="javascript:;" data-toggle="collapse" data-target="#sub-menu2" class="collapse">EDITORIALES<i class="caret"></i></a>
 								<ul id="sub-menu2" class="collapse">
-									<li><a href="#">SUB-MENU1</a><button type="button" id="btn-edit-menu" onclick="editar('sub-menu2','btn-edit-menu');" class="sub_menu_edit btn btn-default btn-xs" title="HAGA CLICK PARA EDITAR ESTE SUB-MENU"><i class="glyphicon glyphicon-edit"></i></button></li>
+									<li><a href="#">SUB-MENU1</a><button type="button" id="btn_edit_submenu" onclick="edit_menu('sub-menu2','btn-edit-menu');" class="btn_edit_submenu btn btn-default btn-xs" title="HAGA CLICK PARA EDITAR ESTE SUB-MENU"><i class="glyphicon glyphicon-edit"></i></button></li>
 									<li><a href="#">SUB-MENU2</a></li>
 									<li><a href="#">SUB-MENU3</a></li>
 									<li><a href="#">SUB-MENU4</a></li>
@@ -263,7 +308,7 @@
 		</nav>
 	</div>
 	<div class="wrapper">
-		<div class="container-fluid">
+		<div class="container-fluid"  data-step="9" data-intro="VENTANA DE EJECUCION">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="panel panel-default">
@@ -352,26 +397,27 @@
 	</div>
 </body>
 <script>
-	function editar(ul,btn){
-		//var ul = document.getElementById(id);
-		
-		$("#"+ul).sortable({
-			opacity: 0.6,
-			cursor: 'move',
-			update: function(){
-				var a=1;
-				var aux = $("#"+ul+" li");
-				//var aux = document.querySelector("#"+ul+">li");
-				console.log(aux);
-
-				$("#"+ul+">li").each(function(){
-					//console.log(this);
-					a++;
-				});
-			}
-		});
-		document.getElementById(btn).onclick = function(){
+	function edit_menu(ul,btn){
+		if( $("#"+ul).hasClass('ui-sortable') ){
 			$("#"+ul).sortable('disable');
+			$("#"+ul).enableSelection();
+		}else{
+			$("#"+ul).disableSelection();
+			$("#"+ul).sortable({
+				opacity: 0.6,
+				cursor: 'move',
+				update: function(){
+					var a=1;
+					var aux = $("#"+ul+" li");
+					
+					console.log(aux);
+
+					$("#"+ul+">li").each(function(){
+						console.log(this);
+						a++;
+					});
+				}
+			});	
 		}
 	}	
 </script>

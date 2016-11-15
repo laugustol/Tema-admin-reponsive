@@ -4,20 +4,20 @@
 	<meta charset="UTF-8">
 	<title>GRID</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
 	<!--JQUERY-->
-	<script src='jquery/jquery.min.js'></script>
+	<script src='libs/jquery/jquery.min.js'></script>
 	<!--JQUERY-UI-->
-	<script src='jquery/jquery-ui.min.js'></script>
+	<script src='libs/jquery/jquery-ui.min.js'></script>
 	<!--BOOTSTRAP JS-->
-	<script src='bootstrap/js/bootstrap.min.js'></script>
+	<script src='libs/bootstrap/js/bootstrap.min.js'></script>
 	<!--INTROJS JS-->
-    <script src='introjs/intro.min.js'></script>	
+    <script src='libs/introjs/intro.min.js'></script>	
     <!--INTROJS CSS-->
-    <link rel="stylesheet" href="introjs/introjs.min.css">	
+    <link rel="stylesheet" href="libs/introjs/introjs.min.css">	
     <!--INTROJS-RTL CSS-->
-    <link rel="stylesheet" href="introjs/introjs-rtl.min.css">
+    <link rel="stylesheet" href="libs/introjs/introjs-rtl.min.css">
 	<style>
 		body{
 		    text-transform: uppercase;
@@ -239,7 +239,7 @@
 				<a class="navbar-brand" href="" title="ACERCA DE...">SISTEMA</a>
 			</div>
 			<div class="profile" data-step="1" data-intro="PERFIL DEL USUARIO">
-				<img src="Kukenan_Tepuy_at_Sunset.jpg" alt="IMAGEN DE PERFIL" class="img">
+				<img src="uploads/Kukenan_Tepuy_at_Sunset.jpg" alt="IMAGEN DE PERFIL" class="img">
 				<div class="data">
 					<b>USUARIO</b><br>
 					ADMINSITRADOR<br>
